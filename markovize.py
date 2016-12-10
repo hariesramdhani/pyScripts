@@ -9,7 +9,7 @@ letter that came after the order using Markov's chain rule.
 getSentences: gets sentences from a file
 ngramize: ngramizes the sentences
 markovize: return the possible sentence that can be generated
-by markov chain rule
+by Markov's chain rule
 ------------------------------------------------------------
 ---------------------------ARGUMENTS------------------------
 filename: your file name
@@ -48,7 +48,7 @@ def markovize(keyword, filename, order, sentenceLength):
     while len(keyword) < order:
         keyword = input('Please enter a longer keyword: ')
     while sentences.find(keyword) == -1:
-        keyword = input('Your keyword wasnot in the text, please enter another: ')
+        keyword = input('Your keyword was not in the text, please enter another one: ')
     currentGram = keyword[-order:]
     result = keyword
 
@@ -65,7 +65,7 @@ def markovize(keyword, filename, order, sentenceLength):
 def main():
     filename = input('Please enter the filename: ')
     keyword = input('Please enter the keyword: ')
-    order = int(input('Please enter the order lenght: '))
+    order = int(input('Please enter the order length: '))
     sentenceLength = int(input('Please enter the sentece length: '))
     generate = int(input('Please enter the number of generation: '))
     for i in range(generate):
