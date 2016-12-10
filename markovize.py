@@ -26,7 +26,7 @@ def getSentences(filename):
     with open(filename, 'r') as f:
         for line in f:
             sentences += line.strip()
-    return sentences 
+    return sentences.lower() 
 
 #Generating the ngrams from the given sentences or texts
 def ngramize(filename, order):
@@ -43,10 +43,14 @@ def ngramize(filename, order):
 
 #Generating random sentences based on the probability of the
 #letter appearance
-def markovize(filename, order, sentenceLength):
+def markovize(keyword, filename, order, sentenceLength):
     ngrams, sentences = ngramize(filename, order)
-    currentGram = sentences[0:order].lower()
-    result = currentGram
+    while len(keyword) < order:
+        keyword = input('Please enter a longer keyword: ')
+    while sentences.find(keyword) == -1:
+        keyword = input('Your keyword wasnot in the text, please enter another: ')
+    currentGram = keyword[-order:]
+    result = keyword
 
     for i in range(sentenceLength):
         possibilities = ngrams[currentGram]
@@ -59,10 +63,13 @@ def markovize(filename, order, sentenceLength):
     return result
 
 def main():
-    filename = 'bioinformatics.txt'
-    order = 6
-    sentenceLength = 30
-    print(markovize(filename, order, sentenceLength))
+    filename = input('Please enter the filename: ')
+    keyword = input('Please enter the keyword: ')
+    order = int(input('Please enter the order lenght: '))
+    sentenceLength = int(input('Please enter the sentece length: '))
+    generate = int(input('Please enter the number of generation: '))
+    for i in range(generate):
+        print(markovize(keyword, filename, order, sentenceLength))
     #print(getSentences(filename))
 
 if __name__ == '__main__':
