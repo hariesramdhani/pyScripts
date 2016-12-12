@@ -8,8 +8,8 @@ letter that came after the order using Markov's chain rule.
 ---------------------------FUNCTIONS------------------------
 getSentences: gets sentences from a file
 ngramize: ngramizes the sentences
-markovize: return the possible sentence that can be generated
-by markov chain rule
+markovize: returns the possible sentence that can be generated
+by Markov's chain rule
 ------------------------------------------------------------
 ---------------------------ARGUMENTS------------------------
 filename: your file name
@@ -20,6 +20,11 @@ order: Length of word to be n-grammized, for example order of
 """
 
 import random
+
+filename = input('Please enter the filename: ')
+order = int(input('Please enter number of order: '))
+sentenceLength = int(input('Please enter the length of output sentence: '))
+keyword = input('Please enter your keyword: ')
 
 def getSentences(filename):
     sentences = ''
@@ -45,11 +50,12 @@ def ngramize(filename, order):
 #letter appearance
 def markovize(keyword, filename, order, sentenceLength):
     ngrams, sentences = ngramize(filename, order)
-    while len(keyword) < order:
-        keyword = input('Please enter a longer keyword: ')
-    while sentences.find(keyword) == -1:
-        keyword = input('Your keyword was not in the text, please enter another: ')
-    currentGram = keyword[-order:]
+    while len(keyword) < order or sentences.find(keyword) == -1: 
+        while len(keyword) < order:
+            keyword = input('Please enter a longer keyword: ')
+        while sentences.find(keyword) == -1:
+            keyword = input('Your keyword was not in the text, please enter another one: ')
+        currentGram = keyword[-order:]
     result = keyword
 
     for i in range(sentenceLength):
@@ -64,10 +70,6 @@ def markovize(keyword, filename, order, sentenceLength):
 
 
 def main():
-    filename = 'bioinformatics.txt'
-    keyword = 'data'
-    order = 5
-    sentenceLength = 50
     print(markovize(keyword, filename, order, sentenceLength))
     #generate = int(input('Please enter the number of generation: '))
     #print(getSentences(filename))
