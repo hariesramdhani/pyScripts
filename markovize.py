@@ -4,7 +4,8 @@
 Markovize is a program that will let you randomize sentences
 from a txt file based on the probability of appearance of 
 letter that came after the order using Markov's chain rule.
-
+------------------------------------------------------------
+PROGRESS : ██████████ 91%
 ---------------------------FUNCTIONS------------------------
 getSentences: gets sentences from a file
 ngramize: ngramizes the sentences
