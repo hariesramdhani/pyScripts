@@ -29,17 +29,27 @@ def tokenize(filename):
     sentences = re.findall(wordPattern, sentences)
     return sentences
 
+# def filterTokens(filename):
+#     tokens = tokenize(filename)
+    
+
 def libraryMaking(filename):
     tokens = tokenize(filename)
     print(len(tokens))
     libs = {}
-    for i in range(len(tokens)):
+    for i in range(len(tokens)-1):
         token = tokens[i]
+        nextToken = tokens[i+1]
 
         if token not in libs:
-            libs[token] = 1
+            libs[token] = [1, {}]
+            sublib = libs[token][1]
+            if nextToken not in sublib:
+                sublib[nextToken] = 1
+            else:
+                sublib[nextToken] += 1
         else:
-            libs[token] += 1
+            libs[token][0] += 1
     return libs
         
 
