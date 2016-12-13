@@ -1,5 +1,19 @@
 #!/usr/bin/python3
 
+"""
+Relatextship is a program that will help you find the relation
+between texts in the scientific journals, books, articles or 
+anything that contain texts.
+------------------------------------------------------------
+PROGRESS : ██ 18%
+---------------------------FUNCTIONS------------------------
+<TBA>
+------------------------------------------------------------
+---------------------------ARGUMENTS------------------------
+<TBA>
+------------------------------------------------------------
+"""
+
 import re
 
 def getSentences(filename):
@@ -15,11 +29,21 @@ def tokenize(filename):
     sentences = re.findall(wordPattern, sentences)
     return sentences
 
-# def libraryMaking(filename):
-#     tokens = tokenize(filename)
-#     libs = {}
-#     for i in range(len(token)):
+def libraryMaking(filename):
+    tokens = tokenize(filename)
+    print(len(tokens))
+    libs = {}
+    for i in range(len(tokens)):
+        token = tokens[i]
+
+        if token not in libs:
+            libs[token] = 1
+        else:
+            libs[token] += 1
+    return libs
+        
+
 
 if __name__ == '__main__':
     filename = 'test.txt'
-    print(tokenize(filename))
+    print(libraryMaking(filename))
