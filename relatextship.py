@@ -6,10 +6,10 @@ between texts in the scientific journals, books, articles or
 anything that contain texts.
 ------------------------------------------------------------
 PROGRESS : ███ 21%
----------------------------FUNCTIONS------------------------
+--------------------------[FUNCTIONS]-----------------------
 <TBA>
 ------------------------------------------------------------
---------------------------PARAMETERS------------------------
+-------------------------[PARAMETERS]-----------------------
 <TBA>
 ------------------------------------------------------------
 """
@@ -34,7 +34,7 @@ def tokenize(filename):
     
 def libraryMaking(filename):
     tokens = tokenize(filename)
-    print(len(tokens))
+    filters = 'in at was is are of on than but from can'
     libs = {}
     for i in range(len(tokens)-1):
         token = tokens[i]
@@ -42,14 +42,15 @@ def libraryMaking(filename):
 
         if token not in libs:
             libs[token] = [1, {}]
-            sublib = libs[token][1]            
-            sublib[nextToken] = 1
+            sublib = libs[token][1]
+            if filters.find(nextToken) == -1:         
+                sublib[nextToken] = 1
         else:
             libs[token][0] += 1
             sublib = libs[token][1]
-            if nextToken not in sublib:
+            if nextToken not in sublib and filters.find(nextToken) == -1:
                 sublib[nextToken] = 1
-            else:
+            elif filters.find(nextToken) == -1:
                 sublib[nextToken] += 1
     return libs
 
@@ -58,8 +59,11 @@ def libraryMaking(filename):
 #     h = max(libs, libs.get[0])
 #     return h
 
-
+def main():
+    filename = 'test.txt'
+    libs = libraryMaking(filename)
+    keyword = input('Enter your keyword: ')
+    print(libs[keyword])
         
 if __name__ == '__main__':
-    filename = 'test.txt'
-    print(mostAppearingWords(filename))
+    main()
