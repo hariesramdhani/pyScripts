@@ -5,11 +5,11 @@ Relatextship is a program that will help you find the relation
 between texts in the scientific journals, books, articles or 
 anything that contain texts.
 ------------------------------------------------------------
-PROGRESS : ██ 18%
+PROGRESS : ███ 21%
 ---------------------------FUNCTIONS------------------------
 <TBA>
 ------------------------------------------------------------
----------------------------ARGUMENTS------------------------
+--------------------------PARAMETERS------------------------
 <TBA>
 ------------------------------------------------------------
 """
@@ -32,7 +32,6 @@ def tokenize(filename):
 # def filterTokens(filename):
 #     tokens = tokenize(filename)
     
-
 def libraryMaking(filename):
     tokens = tokenize(filename)
     print(len(tokens))
@@ -43,17 +42,24 @@ def libraryMaking(filename):
 
         if token not in libs:
             libs[token] = [1, {}]
+            sublib = libs[token][1]            
+            sublib[nextToken] = 1
+        else:
+            libs[token][0] += 1
             sublib = libs[token][1]
             if nextToken not in sublib:
                 sublib[nextToken] = 1
             else:
                 sublib[nextToken] += 1
-        else:
-            libs[token][0] += 1
     return libs
+
+# def mostAppearingWords(filename):
+#     libs = libraryMaking(filename)
+#     h = max(libs, libs.get[0])
+#     return h
+
+
         
-
-
 if __name__ == '__main__':
     filename = 'test.txt'
-    print(libraryMaking(filename))
+    print(mostAppearingWords(filename))
