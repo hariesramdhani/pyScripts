@@ -12,7 +12,7 @@ ngramize: ngramizes the sentences
 markovize: returns the possible sentence that can be generated
 by Markov's chain rule
 ------------------------------------------------------------
----------------------------ARGUMENTS------------------------
+---------------------------PARAMETERS------------------------
 filename: your file name
 sentenceLength: Length of sentence to be generated 
 order: Length of word to be n-grammized, for example order of
@@ -77,4 +77,3 @@ def main():
 
 if __name__ == '__main__':
     main()
-    
