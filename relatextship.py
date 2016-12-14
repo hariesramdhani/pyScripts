@@ -5,7 +5,7 @@ Relatextship is a program that will help you find the relation
 between texts in the scientific journals, books, articles or 
 anything that contain texts.
 ------------------------------------------------------------
-PROGRESS : ███ 21%
+PROGRESS : ███ 22.3%
 --------------------------[FUNCTIONS]-----------------------
 <TBA>
 ------------------------------------------------------------
@@ -63,7 +63,10 @@ def main():
     filename = 'test.txt'
     libs = libraryMaking(filename)
     keyword = input('Enter your keyword: ')
-    print(libs[keyword])
+    while keyword not in libs:
+        print('The keyword you entered is not on the text.')
+        keyword = input('Please enter a different keyword: ')
+    print('%s appeared %d times in the text' % (keyword, libs[keyword][0]))
         
 if __name__ == '__main__':
     main()
